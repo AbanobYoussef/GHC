@@ -235,3 +235,18 @@ main {
 
 .burger:focus {
   outline: none; }
+
+
+
+.error{
+  border : 5px solid red;
+}
+
+
+#ID_error,#Blood_error,#Name_error,#Phone_error{
+  color:red !important;
+  display:none;
+  font-size:15px;
+  
+}
+

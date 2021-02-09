@@ -16,18 +16,8 @@ var func = [
     ["4", "prescription1", "Dr.Mohamed", "4/5/2020", "covid"],
     ["5", "prescription1", "Dr.Mohamed", "4/5/2020", "covid"],
 ];
-btn_profile.onclick = function () {
-    viewprofile.style.display = "block";
-    editprofile.style.display = "none";
-    Mydoctors.style.display = "none";
-    home.style.display = "none";
-};
-Edite_profile.onclick = function () {
-    viewprofile.style.display = "none";
-    editprofile.style.display = "block";
-    Mydoctors.style.display = "none";
-    home.style.display = "none";
-};
+
+
 MY_DOCTORS.onclick = function () {
     viewprofile.style.display = "none";
     editprofile.style.display = "none";
@@ -67,28 +57,7 @@ function bindtabledata(eve) {
     Diagnose.textContent = func[eve][4];
 }
 var editedPersonalData = new Array();
-var updatebtn = document.querySelector(".donere");
-updatebtn
-    .onclick = function Edit_Patient() {
-    var E_P1 = document.querySelector("#National_IDedite").value;
-    var E_P2 = document.querySelector("#Birthe").value;
-    var E_P3 = document.querySelector("#Bloode").value;
-    var E_P4 = document.querySelector("#Namee").value;
-    var E_P5 = document.querySelector("#Phoneee").value;
-    var E_P6 = document.querySelector("#Addressede").value;
-    var E_P7 = document.getElementsByClassName("form-check-input")[2].value;
-    var E_P8 = document.getElementsByClassName("form-check-input")[3].value;
-    editedPersonalData[0] = E_P1;
-    editedPersonalData[1] = E_P2;
-    editedPersonalData[2] = E_P3;
-    editedPersonalData[3] = E_P4;
-    editedPersonalData[4] = E_P5;
-    editedPersonalData[5] = E_P6;
-    editedPersonalData[6] = E_P7;
-    editedPersonalData[7] = E_P8;
-    console.log(editedPersonalData);
-    alert("You have been Updated");
-};
+
 function show_doctors() {
     for (var i = 0; i < 15; i++) {
         Mydoctors.innerHTML += "\n        <div class=\"card doc\" style=\"width: 18rem;\">\n        <img class=\"card-img-top\"\n            src=\"https://theshifaclinic.com/wp-content/uploads/2016/10/DR-avatar.png\"\n            alt=\"Card image cap\">\n        <div class=\"card-body\">\n            <h4>DR,........</h4>\n            <h4>Address,........</h4>\n            <h4>Phone,........</h4>\n            <div class=\"text-center\">\n                <button class=\"btn ReadMore\">Read More</button>\n            </div>\n        </div>\n    </div>\n        ";

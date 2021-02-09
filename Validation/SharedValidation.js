@@ -7,7 +7,7 @@ export function ValidId(Val) {
 }
 
 export function ValidName(Val) {
-    let letters = /^[A-Za-z]+$/;
+    let letters = /^[a-zA-Z ]+$/;
     return letters.test(Val);
 }
 
