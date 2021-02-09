@@ -19,9 +19,13 @@
     <link rel="stylesheet" href="css/w3css.css">
     
     <!-- Style -->
-    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="scss/index.css">
+    <link rel="stylesheet" href="css/style.css">
 
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-app.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/8.2.4/firebase-firestore.js"></script>
     <title>Sidebar #1</title>
   </head>
   <body>
@@ -64,8 +68,6 @@
             <li class="btnprofile"><a><span class="icon-home mr-3"></span>MY profile</a></li>
             <li class="Edite_profile"><a href="#"><span class="icon-search2 mr-3"></span>Edite profile</a></li>
             <li class="MY_DOCTORS"><a href="#"><span class="icon-notifications mr-3"></span>MY DOCTORS</a></li>
-            <li class="SITTINGS"><a href="#"><span class="icon-location-arrow mr-3"></span>SITTINGS</a></li>
-            <li><a href="#"><span class="icon-pie-chart mr-3"></span></a></li>
             <li><a href="#"><span class="icon-sign-out mr-3"></span>Sign out</a></li>
           </ul>
         </div>
@@ -207,54 +209,52 @@
     
                         <div class="col-md-6 col-xm-12">
                             <div class="form-group divitemform">
-                                <label for="National_IDedite">National_ID</label>
-                                <input type="text" name="National_IDeditee" id="National_IDedite"
+                                <label for="National_IDE">National_ID</label> &nbsp;&nbsp;<span id=ID_error>Write 14 Numbers</span>
+                                
+                                <input type="text" name="National_IDe" id="National_IDE"
                                     class="form-control" placeholder="National_ID" aria-describedby="helpId">
-                                <small id="helpId" class="text-muted">Help text</small>
                             </div>
                             <div class="form-group divitemform">
-                                <label for="Birth">Birth</label>
-                                <input type="text" name="Birthe" id="Birthe" class="form-control"
+                                <label for="BirthE">Birth</label>
+                                <input type="text" name="Birthe" id="BirthE" class="form-control"
                                     placeholder="mm/dd/yyyy" aria-describedby="helpId">
-                                <small id="helpId" class="text-muted">Help text</small>
                             </div>
                             <div class="form-group divitemform">
-                                <label for="Blood_Typee">Blood Type</label>
-                                <input type="text" name="Blood" id="Bloode" class="form-control"
+                                <label for="BloodE">Blood Type</label>&nbsp;&nbsp;
+                                <span id=Blood_error>Out of range or write it capital</span>
+                                <input type="text" name="Blood" id="BloodE" class="form-control"
                                     placeholder=" blood type " aria-describedby="helpId">
-                                <small id="helpId" class="text-muted">Help text</small>
                             </div>
                             <div class="form-group divitemform">
                                 <div class="form-check-inline">
                                     <label class="form-check-label">
-                                        <input type="radio" value="male" class="form-check-input male" name="optradio">Male
+                                        <input type="radio" value="male" class="form-check-input male" name="optradioE">Male
                                     </label>
                                 </div>
                                 <div class="form-check-inline">
                                     <label class="form-check-label">
-                                        <input type="radio" value="female" class="form-check-input female" name="optradio">Female
+                                        <input type="radio" value="female" class="form-check-input female" name="optradioE">Female
                                     </label>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6 col-xm-6">
                             <div class="form-group divitemform">
-                                <label for="Nameedite">Name</label>
-                                <input type="text" name="Name" id="Namee" class="form-control"
+                                <label for="NameE">Name</label>&nbsp;&nbsp;
+                                <span id=Name_error>Numbers and spical chracters not allowed</span>
+                                <input type="text" name="Name" id="NameE" class="form-control"
                                     placeholder="Name" aria-describedby="helpId">
-                                <small id="helpId" class="text-muted">Help text</small>
                             </div>
                             <div class="form-group divitemform">
-                                <label for="phonee">Phone</label>
-                                <input type="text" name="Phone" id="Phoneee" class="form-control" placeholder=""
+                                <label for="PhoneE">Phone</label>&nbsp;&nbsp;
+                                <span id=Phone_error>write 11 numbers starts with 010|012|015|011</span>
+                                <input type="text" name="Phone" id="PhoneE" class="form-control" placeholder=""
                                     aria-describedby="helpId">
-                                <small id="helpId" class="text-muted">Help text</small>
                             </div>
                             <div class="form-group divitemform">
-                                <label for="Address">Addressed</label>
-                                <input type="text" name="Addressede" id="Addressede" class="form-control"
+                                <label for="AddressE">Addressed</label>
+                                <input type="text" name="Addressede" id="AddressE" class="form-control"
                                     placeholder="st..." aria-describedby="helpId">
-                                <small id="helpId" class="text-muted">Help text</small>
                             </div>
                         </div>
                         
@@ -445,5 +445,6 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/main.js"></script>
     <script src="ts/ts.js"></script>
+    <script src="js/DataImport.js" type='module'></script>
   </body>
 </html>

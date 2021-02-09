@@ -2,7 +2,6 @@ import Patient from '../Entities Holds the Classes/patient.js';
 import db from './dbInstance.js'
 var table = 'Patient';
 var patients = [];
-export default patient;
 export async function getAll() {
     await db.collection(table).get().then(snapshot => {
         patients.push(snapshot.docs.map(doc => {
