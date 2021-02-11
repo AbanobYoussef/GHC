@@ -2,9 +2,20 @@ import * as Valid from '../Validation/SharedValidation.js';
 export default class Patient {
 
 
-    //fireID, Id, Name, Phone, birth_date, Address, blood_type, Gender, Password, Email
     constructor(...arg) {
-        if (arguments.length != 0) {
+        if(arguments.length == 1){
+            this.fireID = arguments[0].fireID;
+            this.id = arguments[0].id;
+            this.NAME =arguments[0].NAME;
+            this.phone = arguments[0].phone;
+            this.birth_date = arguments[0].birth_date;
+            this.address = arguments[0].address;
+            this.blood_type = arguments[0].blood_type;
+            this.gender = arguments[0].gender;
+            this.password = arguments[0].password ;
+            this.email = arguments[0].email; 
+        }
+        else if (arguments.length != 0) {
             this.fireID = arguments[0];
             this.id = { Value: arguments[1], _Valid: true };
             this.NAME = { Value: arguments[2], _Valid: true };
@@ -14,10 +25,23 @@ export default class Patient {
             this.blood_type = { Value: arguments[6], _Valid: true };
             this.gender = arguments[7];
             this.password = { Value: arguments[8], _Valid: true };
-            this.email = { Value: arguments[9], _Valid: true };
-        } else {
-            this.fireID = "";
+            this.email = { Value: arguments[9], _Valid: true };   
+        }   
+        else  {
+            this.fireID = "";  
+             this.id = '';
+            this.NAME = '';
+            this.phone = '';
+            this.birth_date = '';
+            this.address = '';
+            this.blood_type = '';
+            this.gender = '';
+            this.password = '';
+            this.email = '';
+            this.prescriptopn= [];
+            this.doctor =[];
         }
+        
     }
 
     //======================================set's=========================================

@@ -4,18 +4,42 @@ export default class Doctor {
 
 
 
-    constructor(fireID, Id, Name, Phone, specialization, Address, Degree, Gender, Password, Email) {
-
-        this.fireID = fireID;
-        this.id = { Value: Id, _Valid: true };
-        this.NAME = { Value: Name, _Valid: true };
-        this.phone = { Value: Phone, _Valid: true };
-        this.specialization = { Value: specialization, _Valid: true };
-        this.address = Address;
-        this.degree = Degree;
-        this.gender = Gender;
-        this.password = { Value: Password, _Valid: true };
-        this.email = { Value: Email, _Valid: true };
+    constructor(...arg) {
+        if (arguments.length == 1) {
+            this.fireID =  arguments[0].fireID;
+            this.id =  arguments[0].id;
+            this.NAME = arguments[0].NAME;
+            this.phone = arguments[0].phone ;
+            this.specialization = arguments[0].specialization;
+            this.address =  arguments[0].address;
+            this.degree =  arguments[0].degree;
+            this.gender =  arguments[0].gender;
+            this.password =arguments[0].password;
+            this.email =  arguments[0].email;
+        } 
+        else if (arguments.length != 0) {
+            this.fireID =  arguments[0];
+            this.id = { Value:  arguments[1], _Valid: true };
+            this.NAME = { Value:  arguments[2], _Valid: true };
+            this.phone = { Value:  arguments[3], _Valid: true };
+            this.specialization = { Value:  arguments[4], _Valid: true };
+            this.address =  arguments[5];
+            this.degree =  arguments[6];
+            this.gender =  arguments[7];
+            this.password = { Value:  arguments[8], _Valid: true };
+            this.email = { Value:  arguments[9], _Valid: true };
+        }  
+        else  {
+            this.fireID = "";
+            this.id ='';
+            this.NAME = '';
+            this.phone = '';
+            this.specialization = '';
+            this.address =  '';
+            this.degree =  '';
+            this.gender =  '';
+            this.password ='';
+        }
     }
 
     //======================================set's=========================================

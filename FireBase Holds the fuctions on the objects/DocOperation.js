@@ -6,6 +6,7 @@ var doctors = [];
 export async function getAll() {
     await db.collection(table).get().then(snapshot => {
         doctors.push(snapshot.docs.map(doc => {
+            console.log(doc.data().ID);
             return new Doctors(doc.id,
                 doc.data().ID,
                 doc.data().NAME,
@@ -55,6 +56,24 @@ export function Update(Obj) {
 }
 
 
+
+export async function GetByID(id) {
+    let obj;
+   await db.collection(table).doc(id).get().then((doc) => {
+       obj= new Doctors(doc.id,
+                doc.data().ID,
+                doc.data().NAME,
+                doc.data().phone,
+                doc.data().specialization,
+                doc.data().address,
+                doc.data().degree,
+                doc.data().gender,
+                doc.data().password,
+                doc.data().email);
+    });
+    return obj;
+}
+
 export function Delete(Obj) {
     let id = Obj.FireId;
     console.log(id);
@@ -62,8 +81,6 @@ export function Delete(Obj) {
 }
 
 
-
-var obj = new Doctors("OK82XgS8zgX9AVQHPnAk", 'Id', 'Abanob', 'Phone', 'specialization', 'Address', 'Degree', 'Gender', 'Password', 'Email');
 
 
 
@@ -75,3 +92,7 @@ var obj = new Doctors("OK82XgS8zgX9AVQHPnAk", 'Id', 'Abanob', 'Phone', 'speciali
 //Add(obj)
 //Update(obj)
 //Delete(obj);
+
+//  GetByID('MQxPrLvbR3uPx62p7UqD').then(data=>{
+//      console.log(data);
+//  });

@@ -1,5 +1,7 @@
 import * as p from '../../../FireBase Holds the fuctions on the objects/PatOperation.js'
+import * as pre from '../../../FireBase Holds the fuctions on the objects/preOperation.js'
 
+var appendinfo = document.querySelector(".appendinfo");
 var EditBtn =  document.querySelector(".donere");
 var National_IDE =  document.getElementById('National_IDE');
 var NameE=  document.getElementById('NameE');
@@ -8,21 +10,22 @@ var AddressE=  document.getElementById('AddressE');
 var PhoneE=  document.getElementById('PhoneE');
 var BloodE= document.getElementById('BloodE');
 let Gender = document.getElementsByName("optradioE");
-
+  
 p.getAll().then((data) => {
 
 let user =data.find(user=> user.Id.Value=== '11111111111111');
-    console.log(data);
-    console.log(user);
 
 
-
-
-
-
+        pre.getAll().then((data) => {
+            console.log(data);
+             DoctorCard(data);
             btn_profile.onclick = function () {
-            viewProfile(user)
-        };
+            FillPres(data);
+            viewProfile(user);
+          };
+        });
+
+
 
 
 
@@ -113,7 +116,7 @@ let user =data.find(user=> user.Id.Value=== '11111111111111');
 });
 
 
-
+//==========================end od p.getall =========================================== 
 
 function setProfile(user){
 
@@ -167,3 +170,210 @@ function viewProfile(user){
     setProfile(user);
 }
 
+
+
+function FillPres(pres)
+{
+   Headers();
+    for( let pre of pres)
+    {
+        console.log(pre);
+        let row = document.createElement('div');
+        let department = document.createElement('div');
+        let date = document.createElement('div');
+        let Doctor_Name = document.createElement('div');
+        let Doctor_Mobile = document.createElement('div');
+        let Button = document.createElement('div');
+        
+        row.classList.add('row');
+        row.classList.add('rows');
+         department.classList.add('col');
+         date.classList.add('col');
+         Doctor_Name.classList.add('col');
+         Doctor_Mobile.classList.add('col');
+
+         Button.classList.add('col');
+
+
+         department.setAttribute("id", "department");
+         date.setAttribute("id", "date");
+         Doctor_Name.setAttribute("id", "Doctor_Name");
+         Doctor_Mobile.setAttribute("id", "Doctor_Mobile");
+
+         Button.setAttribute("id", "Button");
+
+
+         var btn=document.createElement('button');
+         btn.innerHTML='Details';  
+         btn.classList.add('w3-circle');
+         btn.classList.add('w3-green');
+         btn.setAttribute("data-target", "#myModal");
+         btn.setAttribute("data-toggle", "modal");
+         btn.onclick=function (){
+            let Doctor_Name = document.querySelector("#DoctorName");
+            let Dater = document.querySelector("#Date");
+            let Department = document.querySelector("#Department");
+            let Disease = document.querySelector("#Disease");
+            let Medicines_List = document.querySelector("#Medicines_List");
+            let Diagnose = document.querySelector("#Diagnose");
+            Doctor_Name.value = pre.doctor.NAME.Value;
+             console.log(Doctor_Name.value);
+            Dater.value = pre.data;
+            Department.value = pre.Department;
+            Disease.value = pre.Disease;
+            Medicines_List.textContent = pre.Medicines_List;
+            Diagnose.textContent = pre.Dignose;
+         }
+         Button.appendChild(btn);
+
+
+         department.innerHTML=pre.Department;
+         date.innerHTML=pre.data;
+         Doctor_Name.innerHTML=pre.doctor.NAME.Value;
+         Doctor_Mobile.innerHTML=pre.doctor.phone.Value;
+
+
+
+        row.appendChild(department); 
+        row.appendChild(date); 
+        row.appendChild(Doctor_Name); 
+        row.appendChild(Doctor_Mobile); 
+        row.appendChild(Button); 
+        appendinfo.appendChild(row); 
+    }
+}
+
+   
+   function Headers(){
+        let row = document.createElement('div');
+        let department = document.createElement('div');
+        let date = document.createElement('div');
+        let Doctor_Name = document.createElement('div');
+        let Doctor_Mobile = document.createElement('div');
+        let Button = document.createElement('div');
+        row.classList.add('row');
+        row.classList.add('appendinfo');
+        department.classList.add('col');
+        date.classList.add('col');
+        Doctor_Name.classList.add('col');
+        Doctor_Mobile.classList.add('col');
+         Button.classList.add('col');
+
+         department.innerHTML='Department';
+         date.innerHTML='Data';
+         Doctor_Name.innerHTML='Doctor Name';
+         Doctor_Mobile.innerHTML='Doctor Mobile';
+         Button.innerHTML='Details';
+
+        row.appendChild(department); 
+        row.appendChild(date); 
+        row.appendChild(Doctor_Name); 
+        row.appendChild(Doctor_Mobile); 
+        row.appendChild(Button); 
+        appendinfo.appendChild(row); 
+   }
+
+  
+
+
+
+
+
+
+ function DoctorCard(pres){
+        for (let pre of pres){
+            let Card = document.createElement('div');
+        let img = document.createElement('img');
+
+        let card_body = document.createElement('div');
+            let h41 = document.createElement('h4');
+            let h42 = document.createElement('h4');
+            let h43 = document.createElement('h4');
+            let BtnDiv = document.createElement('div');
+            let Btn = document.createElement('button');
+
+        Card.classList.add('card');
+        Card.classList.add('doc');
+        Card.classList.add('CARDSTYLE');
+        Card.setAttribute("id", "card");
+
+        img.src="https://theshifaclinic.com/wp-content/uploads/2016/10/DR-avatar.png";
+        img.alt="Card image cap";
+        img.classList.add('card-img-top');
+
+
+
+        Card.appendChild(img); 
+        Card.appendChild(card_body); 
+
+
+
+        card_body.appendChild(h41); 
+        card_body.appendChild(h42); 
+        card_body.appendChild(h43); 
+        card_body.appendChild(BtnDiv); 
+        BtnDiv.appendChild(Btn); 
+
+        Btn.innerHTML='Read More';
+        Btn.classList.add('btn');
+        Btn.classList.add('ReadMore');
+
+
+             h41.innerHTML="DR, "+ pre.doctor.NAME.Value;
+             h42.innerHTML="Address, "+pre.doctor.Address;
+             h43.innerHTML="Phone, "+pre.doctor.Phone.Value;
+
+ 
+        Mydoctors.appendChild(Card); 
+        }
+
+
+
+
+
+
+let Card = document.getElementById('card');
+
+    setInterval(() => {
+            if(window.innerWidth<=900 && window.innerWidth>=600){
+                   console.log(window.innerWidth);
+                    Card.classList.remove('CARDSTYLE');
+                    Card.classList.add('CARDSTYLE2');
+                    Card.classList.remove('CARDSTYLE3');
+            } else if(window.innerWidth<600){
+                    Card.classList.remove('CARDSTYLE1');
+                    Card.classList.remove('CARDSTYLE2');
+                    Card.classList.add('CARDSTYLE3');
+            }
+            else{
+                    Card.classList.add('CARDSTYLE');
+                    Card.classList.remove('CARDSTYLE2');
+                    Card.classList.remove('CARDSTYLE3');
+            }
+
+        }, 1000);
+   }
+
+   
+    
+
+
+    
+
+
+
+
+    // Mydoctors.innerHTML +=`
+    //     <div class="card doc CARDSTYLE col-md-3">
+    //                 <img class="card-img-top"
+    //                     src="https://theshifaclinic.com/wp-content/uploads/2016/10/DR-avatar.png"
+    //                     alt="Card image cap">
+    //                 <div class="card-body" style="width: 100%">
+    //                     <h4>DR,........</h4>
+    //                     <h4>Address,........</h4>
+    //                     <h4>Phone,........</h4>
+    //                     <div class="text-center" style="width: 100%">
+    //                     <button class="btn ReadMore">Read More</button>
+    //                     </div>
+    //                 </div>
+    //     </div>`;

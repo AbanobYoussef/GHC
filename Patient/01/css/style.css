@@ -250,3 +250,42 @@ main {
   
 }
 
+.appendinfo{
+  font-size:20px;
+  text-align:center;
+}
+
+.rows{
+  border :2px solid gray;
+  padding:1%;
+  margin-top:.5%;
+  margin-bottom:.5%;
+  font-size:15px;
+  text-align:center;
+}
+
+
+.CARDSTYLE{
+  margin-left:3.5%;
+  margin-bottom:2%;
+  width:20%;
+  float:left;
+}
+
+
+
+.CARDSTYLE2{
+  margin-left:3.5%;
+  margin-bottom:2%;
+  width:40%;
+  float:left;
+}
+
+
+
+.CARDSTYLE3{
+  margin:auto;
+  margin-bottom:2%;
+  width:100%;
+  float:left;
+}

@@ -4,15 +4,27 @@ export default class Admin {
 
 
 
-    constructor(fireID, Id, Name, Phone, Address, Gender, Password, Email) {
-        this.fireID = fireID;
-        this.id = { Value: Id, _Valid: true };
-        this.NAME = { Value: Name, _Valid: true };
-        this.phone = { Value: Phone, _Valid: true };
-        this.address = Address;
-        this.gender = Gender;
-        this.password = { Value: Password, _Valid: true };
-        this.email = { Value: Email, _Valid: true };
+    constructor(...arg) {
+          if (arguments.length != 0) {
+            this.fireID =   arguments[0];
+            this.id = { Value:   arguments[1], _Valid: true };
+            this.NAME = { Value:   arguments[2], _Valid: true };
+            this.phone = { Value:   arguments[3], _Valid: true };
+            this.address =   arguments[4];
+            this.gender =   arguments[5];
+            this.password = { Value:   arguments[6], _Valid: true };
+            this.email = { Value:   arguments[7], _Valid: true };
+        } 
+        else  {
+            this.fireID = "";
+             this.id = '';
+            this.NAME = '';
+            this.phone = '';
+            this.address =   '';
+            this.gender =  '';
+            this.password = '';
+            this.email = '';
+        }
     }
 
 
