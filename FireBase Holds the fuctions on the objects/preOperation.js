@@ -30,6 +30,28 @@ export async function getAll() {
 }
 
 
+export async function getAll_For_Doctor(id) {
+    await db.collection(table).where("DOC_ID","==",id).get().then(snapshot => {
+        prescriptopn.push(snapshot.docs.map(doc => {
+            let obj= new Prescriptopn(doc.id,
+                doc.data().DOC_ID,
+                doc.data().PAT_DOC_ID,
+                doc.data().Department,
+                doc.data().Dignose,
+                doc.data().Disease,
+                doc.data().Medicines_List,
+                new Patient( JSON.parse(doc.data().patient)),
+                 new Doctors(JSON.parse(doc.data().doctor)),
+                 doc.data().data,
+                 doc.data().doctor_mobile);
+
+                return obj;
+        }));
+        prescriptopn = prescriptopn[0];
+    });
+    return prescriptopn;
+}
+
 
 export function Add(Obj) {
     db.collection(table).add({
@@ -83,7 +105,7 @@ export function Delete(Obj) {
 }
 
 
-// var objPat = new Patient("NE2DytHAGrGP2pUEcLMe",
+// var objPat = new Patient("Q8BZq9SLE5abI6msq9K4",
 //     'Id',
 //     'Name',
 //     'Phone',
@@ -108,15 +130,16 @@ export function Delete(Obj) {
 
 
 
-// let obj= new Prescriptopn('',
+// let obj= new Prescriptopn(' ',
 //                 'MQxPrLvbR3uPx62p7UqD',
-//                 'NE2DytHAGrGP2pUEcLMe',
+//                 'wBOn2MmOb9fooF6GVdl6',
 //                 'Department',
 //                 'Dignose',
 //                 'Disease',
 //                 'Medicines_List',
 //                  objPat,
-//                  objDoc);
+//                  objDoc,
+//                  '20/20/2021');
 
 // Add(obj);
 
@@ -129,6 +152,6 @@ export function Delete(Obj) {
 //Update(obj)
 //Delete(obj)
 
-GetByID('H0rmoKgUEDS9CYevIy5Z').then(data=>{
-    console.log(data);
-});
+// GetByID('H0rmoKgUEDS9CYevIy5Z').then(data=>{
+//     console.log(data);
+// });

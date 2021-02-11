@@ -179,6 +179,43 @@ function myFunction1() {//search on table function
       }       
     }
   }//end of search function
+  // -----------------------------------------------------------patient hestorical data table//
+  function txtSearchFunction1() {//search on table function
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("txtDeptSearch");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("DiagnosesTBl");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[0];
+      if (td) {
+        txtValue = td.textContent || td.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }       
+    }
+  }
+
+
+  // -------------Action on details button--//
+  var btnShowDiagonesDetails=document.getElementsByClassName('btnShowDiagonesDetails'); 
+  var modalDataTargetID=document.getElementById("mdl");
+  for(var x=0;x<btnShowDiagonesDetails.length;x++)
+  {
+    btnShowDiagonesDetails[x].onclick=function(){
+  
+     
+      alert("hi");
+
+
+    }}
+  
+  //  EndAction on details button-----//
+
+  // ----------------------------------------------------------- end patient hestorical data table//
 
   var btnDteteRow=document.getElementsByClassName('btnDteteRow'); //start delete button function
 var btnEnterId=document.getElementsByClassName('btnEnterId');//buttons for open enter id form
@@ -266,3 +303,20 @@ for(var x=0;x<btnEnterId.length;x++)
 //   confirmBox.show();
 // }
 // --------------------------------------------End appointment---------------------------//
+// --------------------------------------------start diagonose medicin --------------------//
+function filterFunction() {
+  var input, filter, ul, li, a, i;
+  input = document.getElementById("dropSearch");
+  filter = input.value.toUpperCase();
+  div = document.getElementById("myDropdown");
+  a = div.getElementsByTagName("a");
+  for (i = 0; i < a.length; i++) {
+    txtValue = a[i].textContent || a[i].innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      a[i].style.display = "";
+    } else {
+      a[i].style.display = "none";
+    }
+  }
+}
+// --------------------------------------------End diagonose medicin --------------------//

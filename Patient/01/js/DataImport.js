@@ -295,7 +295,6 @@ function FillPres(pres)
         Card.classList.add('card');
         Card.classList.add('doc');
         Card.classList.add('CARDSTYLE');
-        Card.setAttribute("id", "card");
 
         img.src="https://theshifaclinic.com/wp-content/uploads/2016/10/DR-avatar.png";
         img.alt="Card image cap";
@@ -332,26 +331,31 @@ function FillPres(pres)
 
 
 
-let Card = document.getElementById('card');
+let Cards = document.getElementsByClassName('card');
+console.log(Cards);
+            setInterval(() => {
+                        
+                    for(let card of Cards)
+                    {
+                            if(window.innerWidth<=900 && window.innerWidth>=600){
+                            console.log(window.innerWidth);
+                                card.classList.remove('CARDSTYLE');
+                                card.classList.add('CARDSTYLE2');
+                                card.classList.remove('CARDSTYLE3');
+                        } else if(window.innerWidth<600){
+                                card.classList.remove('CARDSTYLE1');
+                                card.classList.remove('CARDSTYLE2');
+                                card.classList.add('CARDSTYLE3');
+                        }
+                        else{
+                                card.classList.add('CARDSTYLE');
+                                card.classList.remove('CARDSTYLE2');
+                                card.classList.remove('CARDSTYLE3');
+                        }
+                    }
+                   
 
-    setInterval(() => {
-            if(window.innerWidth<=900 && window.innerWidth>=600){
-                   console.log(window.innerWidth);
-                    Card.classList.remove('CARDSTYLE');
-                    Card.classList.add('CARDSTYLE2');
-                    Card.classList.remove('CARDSTYLE3');
-            } else if(window.innerWidth<600){
-                    Card.classList.remove('CARDSTYLE1');
-                    Card.classList.remove('CARDSTYLE2');
-                    Card.classList.add('CARDSTYLE3');
-            }
-            else{
-                    Card.classList.add('CARDSTYLE');
-                    Card.classList.remove('CARDSTYLE2');
-                    Card.classList.remove('CARDSTYLE3');
-            }
-
-        }, 1000);
+                }, 1000);
    }
 
    
