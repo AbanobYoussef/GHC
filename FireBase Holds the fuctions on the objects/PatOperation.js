@@ -54,25 +54,23 @@ export function Update(Obj) {
 
 
 export async function GetByID(id) {
-    let obj;
-   await db.collection(table).doc(id).get().then((doc) => {
-       console.log(doc);
-      obj=  new Patient(doc.id,
-                doc.data().ID,
-                doc.data().NAME,
-                doc.data().phone,
-                doc.data().birth_date,
-                doc.data().address,
-                doc.data().blood_type,
-                doc.data().gender,
-                doc.data().password,
-                doc.data().email);
+    await db.collection(table).doc(id).get().then((doc) => {
+        //console.log(doc);
+        obj = new Patient(doc.id,
+            doc.data().ID,
+            doc.data().NAME,
+            doc.data().phone,
+            doc.data().birth_date,
+            doc.data().address,
+            doc.data().blood_type,
+            doc.data().gender,
+            doc.data().password,
+            doc.data().email);
     });
     return obj;
 }
 
-export function Delete(Obj) {
-    let id = Obj.FireId;
+export function Delete(id) {
     db.collection(table).doc(id).delete();
 }
 

@@ -17,18 +17,7 @@ var func = [
 ];
 
 
-MY_DOCTORS.onclick = function () {
-    viewprofile.style.display = "none";
-    editprofile.style.display = "none";
-    Mydoctors.style.display = "contents";
-    home.style.display = "none";
-};
-homebtn.onclick = function () {
-    viewprofile.style.display = "none";
-    editprofile.style.display = "none";
-    Mydoctors.style.display = "none";
-    home.style.display = "block";
-};
+
 // function appendDaTable() {
 //     for (var i = 0; i < func.length; i++) {
 //         appendinfo.innerHTML += "\n        <hr>\n        <div class=\"row\">\n         <div class=\"col\">" + (parseInt(func[i][0]) + 1) + "</div>\n         <div class=\"col\"> " + func[i][1] + "</div>\n         <div class=\"col\">" + func[i][2] + " </div>\n         <div class=\"col\"> " + func[i][3] + "</div>\n         <div class=\"col\"> " + func[i][4] + " Name</div>\n         <div class=\"col\"> " + func[i][5] + " Mobile</div>\n         <div class=\"col\"> <button data-toggle=\"modal\" data-target=\"#myModal\" onclick=\"getid(event)\" class=\"w3-circle w3-green\" id=\"" + i + "a\">Details</button></div>\n        </div>\n        ";

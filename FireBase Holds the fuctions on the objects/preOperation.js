@@ -3,26 +3,28 @@ import Doctors from '../Entities Holds the Classes/Doctors.js';
 import Patient from '../Entities Holds the Classes/patient.js';
 import * as d from './DocOperation.js'
 import * as p from './PatOperation.js'
-
 import db from './dbInstance.js'
+
+
+
+                // new Patient(JSON.parse(doc.data().patient)),
+                // new Doctors(JSON.parse(doc.data().doctor)),
 var table = 'Diagnoses';
 var prescriptopn = [];
 export async function getAll() {
     await db.collection(table).get().then(snapshot => {
         prescriptopn.push(snapshot.docs.map(doc => {
-            let obj= new Prescriptopn(doc.id,
+            let obj = new Prescriptopn(doc.id,
                 doc.data().DOC_ID,
                 doc.data().PAT_DOC_ID,
                 doc.data().Department,
-                doc.data().Dignose,
-                doc.data().Disease,
+                doc.data().Diseases,
                 doc.data().Medicines_List,
-                new Patient( JSON.parse(doc.data().patient)),
-                 new Doctors(JSON.parse(doc.data().doctor)),
-                 doc.data().data,
-                 doc.data().doctor_mobile);
+                doc.data().data,
+                doc.data().Medical_analyzes_required,
+                doc.data().Radiology_required);
 
-                return obj;
+            return obj;
         }));
         prescriptopn = prescriptopn[0];
     });
@@ -31,21 +33,47 @@ export async function getAll() {
 
 
 export async function getAll_For_Doctor(id) {
-    await db.collection(table).where("DOC_ID","==",id).get().then(snapshot => {
+    await db.collection(table).where("DOC_ID", "==", id).get().then(snapshot => {
+       // console.log(snapshot.docs);
         prescriptopn.push(snapshot.docs.map(doc => {
-            let obj= new Prescriptopn(doc.id,
+            let obj = new Prescriptopn(doc.id,
                 doc.data().DOC_ID,
                 doc.data().PAT_DOC_ID,
                 doc.data().Department,
-                doc.data().Dignose,
-                doc.data().Disease,
+                doc.data().Diseases,
                 doc.data().Medicines_List,
-                new Patient( JSON.parse(doc.data().patient)),
-                 new Doctors(JSON.parse(doc.data().doctor)),
-                 doc.data().data,
-                 doc.data().doctor_mobile);
+                doc.data().data,
+                doc.data().Medical_analyzes_required,
+                doc.data().Radiology_required);
 
-                return obj;
+            return obj;
+        }));
+
+      //  console.log(prescriptopn);
+        if(prescriptopn.length==1)
+            prescriptopn = prescriptopn[0];
+
+        
+    });
+    return prescriptopn;
+}
+
+
+
+export async function getAll_For_Patient(id) {
+    await db.collection(table).where("PAT_DOC_ID", "==", id).get().then(snapshot => {
+        prescriptopn.push(snapshot.docs.map(doc => {
+            let obj = new Prescriptopn(doc.id,
+                doc.data().DOC_ID,
+                doc.data().PAT_DOC_ID, 
+                doc.data().Department,
+                doc.data().Diseases,
+                doc.data().Medicines_List,
+                doc.data().data,
+                doc.data().Medical_analyzes_required,
+                doc.data().Radiology_required);
+
+            return obj;
         }));
         prescriptopn = prescriptopn[0];
     });
@@ -53,17 +81,18 @@ export async function getAll_For_Doctor(id) {
 }
 
 
+
 export function Add(Obj) {
+    console.log(Obj.Medicines_List);
     db.collection(table).add({
         DOC_ID: Obj.DOC_ID,
         PAT_DOC_ID: Obj.PAT_DOC_ID,
         Department: Obj.Department,
-        Dignose: Obj.Dignose,
-        Disease: Obj.Disease,
+        Dignose: Obj.Dignoses,
         Medicines_List: Obj.Medicines_List,
-        patient:JSON.stringify(Obj.patient),
-        doctor: JSON.stringify(Obj.doctor),
-        data:  Obj.data,
+        data: Obj.data,
+        Medical_analyzes_required: Obj.Medical_analyzes_required,      
+        Radiology_required: Obj.Radiology_required
     });
 }
 
@@ -76,31 +105,96 @@ export function Update(Obj) {
         Dignose: Obj.Dignose,
         Disease: Obj.Disease,
         Medicines_List: Obj.Medicines_List,
-        data:  Obj.data
+        data: Obj.data,
+        Medical_analyzes_required: Obj.Medical_analyze
     });
 }
 
 
 
-export async function GetByID(id) {
+export async function Get_By_Doc_Pat_ID(DocId, PatId) {
     let obj;
-   await db.collection(table).doc(id).get().then((doc) => {
-       console.log(doc);
-      obj=    new Prescriptopn(doc.id,
+    let objs = [];
+    await db.collection(table)
+        .where("DOC_ID", "==", DocId)
+        .where("PAT_DOC_ID", "==", PatId)
+        .get().then((snap) => {
+            objs.push(snap.docs.map(doc => {
+                let obj =  new Prescriptopn(doc.id,
                 doc.data().DOC_ID,
                 doc.data().PAT_DOC_ID,
                 doc.data().Department,
                 doc.data().Dignose,
-                doc.data().Disease,
                 doc.data().Medicines_List,
-                new Patient( JSON.parse(doc.data().patient)),
-                new Doctors(JSON.parse(doc.data().doctor)),
-                doc.data().data);
-    });
-    return obj;
+                doc.data().data,
+                doc.data().Medical_analyzes_required,
+                doc.data().Radiology_required);
+
+                return obj;
+            }));
+            console.log(objs);
+        if(objs.length==1)
+            objs = objs[0];
+        });
+    return objs;
 }
-export function Delete(Obj) {
-    let id = Obj.FireId;
+
+
+export async function Get_By_Pat_ID(PatId) {
+    let obj;
+    let objs = [];
+    await db.collection(table)
+        .where("PAT_DOC_ID", "==", PatId)
+        .get().then((snap) => {
+            objs.push(snap.docs.map(doc => {
+                let obj =  new Prescriptopn(doc.id,
+                doc.data().DOC_ID,
+                doc.data().PAT_DOC_ID,
+                doc.data().Department,
+                doc.data().Diseases,
+                doc.data().Medicines_List,
+                doc.data().data,
+                doc.data().Medical_analyzes_required,
+                doc.data().Radiology_required);
+
+                return obj;
+            }));
+            objs = objs[0];
+        });
+    return objs;
+}
+
+
+export function GetByID(){
+    console.log('hello');
+}
+
+
+// export async function getAll_For_Patient(id) {
+//     await db.collection(table).where("PAT_DOC_ID", "==", id).get().then(snapshot => {
+//         prescriptopn.push(snapshot.docs.map(doc => {
+//             let obj = new Prescriptopn(doc.id,
+//                 doc.data().DOC_ID,
+//                 doc.data().PAT_DOC_ID,
+//                 doc.data().Department,
+//                 doc.data().Dignose,
+//                 doc.data().Disease,
+//                 doc.data().Medicines_List,
+//                 new Patient(JSON.parse(doc.data().patient)),
+//                 new Doctors(JSON.parse(doc.data().doctor)),
+//                 doc.data().data);
+
+//             return obj;
+//         }));
+//         prescriptopn = prescriptopn[0];
+//     });
+//     return prescriptopn;
+// }
+
+
+
+
+export function Delete(id) {
     db.collection(table).doc(id).delete();
 }
 

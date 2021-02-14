@@ -48,9 +48,7 @@ export function Update(Obj) {
     });
 }
 
-export function Delete(obj) {
-
-    let id = obj.FireId;
+export function Delete(id) {
     db.collection(table).doc(id).delete();
 }
 var obj = new Admin('2kcCDfUhgifBzwudCak6', 'ID',
