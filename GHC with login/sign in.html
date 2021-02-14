@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>sign in</title>
+	<link rel="stylesheet" href="sign in.css">
+	
+
+</head>
+<div class="login-wrap">
+	<div class="login-html">
+		<input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
+		<input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
+		<div class="login-form">
+			<div class="sign-in-htm">
+				<div class="group">
+					<label for="nationalid" class="label">National Id</label>
+					<input id="nationalid" type="text" class="input" name="name">
+				</div>
+				<div class="group">
+					<label for="pass" class="label">Password</label>
+					<input id="pass" type="password" class="input" data-type="password" name="password">
+				</div>
+				<div class="group">
+					<input id="check" type="checkbox" class="check" checked>
+					<label for="check"><span class="icon"></span> Keep me Signed in</label>
+				</div>
+				<div class="group">
+					<input type="button" class="button" value="Sign In" onclick=" validateform()">
+				</div><br><br>
+				<div class="foot-lnk">
+					<a href="#forgot">Forgot Password?</a><br>
+				</div><br><br><br>
+				<div class="foot-lnk">
+					<label for="tab-2">Don't have an account?<span id="footsign">Sign-up</span></a>
+				</div>
+				<div class="hr"></div>
+
+			</div>
+			<div class="sign-up-htm">
+				<section id="container">
+					<form class="group" action="">
+						<table class="group">
+							<tr>
+								<td >
+									<label class="label" for="id"> National Id</label>
+									<input class="input" type="text" id="txtNId" name="id"
+										placeholder="Enter National Id"required><br>
+								</td>
+								<td>
+									<label class="label" for="name"> Name</label>
+									<input class="input" type="text" id="txtName" name="name"
+										placeholder="Enter Full Name "required><br>
+								</td>
+							</tr>
+
+							<tr>
+								<td>
+									<label class="label" for="name"> Birth Date</label>
+									<input class="input" type="date" name="birthDate" id="txtBirthDate"required><br>
+								</td>
+								<td>
+									<label class="label" for="phone"> Phone</label>
+									<input class="input" type="tel" id="phone" placeholder="Enter phone"><br>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<label class="label" for="blood">Blood Type</label>
+									<input class="input" type="text" id="blood" name="blood"
+										placeholder="Enter Blood Type"required><br>
+								</td>
+								<td>
+									<label class="label" for="Address"> Address</label>
+									<input class="input" type="text" id="txtAddress" name="Address"
+										placeholder="Enter Address"required><br>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<label class="label" for="Password">Password</label>
+									<input class="input" type="password" id="password" name="Password"
+										placeholder="Enter Password"required><br>
+								</td>
+								<td>
+									<label class="label" for="conPassword"> Confirm Password</label>
+									<input class="input" type="password" id="conPassword" name="conPassword"
+										placeholder="Confirm Password"required><br>
+								</td>
+							</tr>
+
+						</table>
+					</form>
+					<div class="group">
+						<label for="">Gender</label>
+						<input type="radio" name="gender" id="" value="male"><span id="redioSpan">Male</span>
+						<input type="radio" name="gender" id="" value="female"><span id="redioSpan">Female</span>
+					</div>
+					<div class="group">
+						<input type="submit" class="button" value="Sign Up"><br>
+						<div class="foot-lnk">
+							<label for="tab-1">Already have account?</a>
+						</div>
+
+				</section>
+
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	function validateform() {
+		var national = document.getElementById("nationalid").value;
+		var password = document.getElementById("pass").value;;
+
+		if (national == null || national == "") {
+			alert("please enter your national id");
+
+		} else if (password.length < 6) {
+			alert("Password must be at least 6 characters.");
+
+		}
+		else {
+			window.location.replace("index.html");
+		}
+	}  
+</script>
+</body>
+
+</html>

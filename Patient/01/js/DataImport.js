@@ -177,6 +177,7 @@ function viewProfile(user) {
 function FillPres(pres) {
     Headers();
     view = true;
+    
     for (let pre of pres) {
         console.log(pre);
         let row = document.createElement('div');
@@ -217,18 +218,17 @@ function FillPres(pres) {
             let Disease = document.querySelector("#Disease");
             let Medicines_List = document.querySelector("#Medicines_List");
             let Diagnose = document.querySelector("#Diagnose");
-            Doctor_Name.value = pre.doctor.NAME.Value;
-            console.log(Doctor_Name.value);
+            // Doctor_Name.value = pre.doctor.NAME.Value;
+            // console.log(Doctor_Name.value);
             Dater.value = pre.data;
             Department.value = pre.Department;
-            Disease.value = pre.Disease;
+            Disease.value = '';
             Medicines_List.textContent = pre.Medicines_List;
-            Diagnose.textContent = pre.Dignose;
+            Diagnose.textContent = pre.Diagnoses;
         }
         Button.appendChild(btn);
 
-
-         d.GetByID(pre.DOC_ID).then(doc=>{
+             d.GetByID(pre.DOC_ID).then(doc=>{
              
             department.innerHTML = pre.Department;
             date.innerHTML = pre.data;
@@ -244,8 +244,11 @@ function FillPres(pres) {
             row.appendChild(Button);
             appendinfo.appendChild(row);
          });
+        
+        
     }
 }
+
 
 
 function Headers() {

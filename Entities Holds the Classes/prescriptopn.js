@@ -18,6 +18,7 @@ export default class Prescriptopn {
             this.DOC_ID = '';
             this.PAT_DOC_ID = '';
             this.Department = '';
+            this.Diseases = '';
             this.Diagnoses = '';
             this.Medicines_List = '';
             this.data = '';
@@ -25,8 +26,6 @@ export default class Prescriptopn {
             this.Radiology_required ='';
         }
                 
-              
-
     }
 
 
