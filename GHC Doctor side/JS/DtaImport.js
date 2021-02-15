@@ -4,6 +4,22 @@ import * as pre from '../../../FireBase Holds the fuctions on the objects/preOpe
 import * as APP from '../../../FireBase Holds the fuctions on the objects/AppOperation.js';
 import Prescriptopn from '../../../Entities Holds the Classes/prescriptopn.js';
 
+
+const decrypt = data => {
+	 return CryptoJS.enc.Base64.parse(data).toString(CryptoJS.enc.Utf8);
+};
+    let url = window.location.href;
+   console.log(window.location.href);
+    let smiID =url.split("?")[1];
+   console.log(smiID);
+    let ID =smiID.split("=")[1];
+   console.log(ID);
+   let doc_id=decrypt(ID);
+   console.log(doc_id);
+
+
+
+
 var patientNumber = document.getElementById('Patientnumber');
 var TBody = document.getElementById('TBody');
 var tbody2 = document.getElementById('tbody2');
@@ -36,7 +52,7 @@ d.getAll().then((data) => {
     getAllDocs(data)
 });
 
-pre.getAll_For_Doctor('MQxPrLvbR3uPx62p7UqD').then((data) => {
+pre.getAll_For_Doctor(doc_id).then((data) => {
 
     //console.log(data);
     patientNumber.innerHTML = Patientnumber(data).size;
@@ -52,7 +68,7 @@ pre.getAll_For_Doctor('MQxPrLvbR3uPx62p7UqD').then((data) => {
 
 
 
-    APP.getAll_For_Doctor('MQxPrLvbR3uPx62p7UqD').then((apps) => {
+    APP.getAll_For_Doctor(doc_id).then((apps) => {
 
        // console.log(apps);
         AppointmentsNumber.innerHTML = apps.length;
@@ -474,7 +490,7 @@ var btnAddNewDiagnose = document.getElementById('btnAddNewDiagnose');
 
 
  function LoadANDupdate(id){
-     pre.Get_By_Doc_Pat_ID('MQxPrLvbR3uPx62p7UqD',id).then(pres => {
+     pre.Get_By_Doc_Pat_ID(doc_id,id).then(pres => {
             console.log(pres);
             tbody2.innerHTML='';
             for(let pre of pres){
@@ -553,7 +569,7 @@ function Fill_Pat_Pre(pre, patient) {
     Approw.appendChild(tdBtn);
 
 
-    tbody2.setAttribute('data-docid','MQxPrLvbR3uPx62p7UqD' );
+    tbody2.setAttribute('data-docid',doc_id );
     tbody2.setAttribute('data-patid', patient.FireId);
 
     tbody2.appendChild(Approw);

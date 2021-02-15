@@ -86,6 +86,22 @@ var obj = new Patient("HeW1d1brf85sjtKRxCHR",
     'Password',
     'Email');
 
+export async function Get_By_Pat_ID_AND_PASSWORD(Id , Password) {
+    let obj;
+    console.log(Id);
+    console.log(Password);
+    await db.collection(table)
+        .where("ID", "==", Id)
+        .where("password", "==", Password)
+        .get().then(snap => {
+         snap.docs.forEach(doc => {
+             
+            console.log(doc.id);
+            obj= doc.id;
+         });
+    });
+     return obj;
+}
 
 //Add(obj);
 // getAll().then((data) => {

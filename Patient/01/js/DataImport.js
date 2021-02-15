@@ -2,6 +2,18 @@ import * as p from '../../../FireBase Holds the fuctions on the objects/PatOpera
 import * as pre from '../../../FireBase Holds the fuctions on the objects/preOperation.js'
 import * as d from '../../../FireBase Holds the fuctions on the objects/DocOperation.js'
 
+const decrypt = data => {
+	 return CryptoJS.enc.Base64.parse(data).toString(CryptoJS.enc.Utf8);
+};
+    let url = window.location.href;
+   console.log(window.location.href);
+    let smiID =url.split("?")[1];
+   console.log(smiID);
+    let ID =smiID.split("=")[1];
+   console.log(ID);
+   let pat_id=decrypt(ID);
+   console.log(pat_id);
+
 var appendinfo = document.querySelector(".appendinfo");
 var EditBtn = document.querySelector(".donere");
 var National_IDE = document.getElementById('National_IDE');
@@ -14,11 +26,10 @@ let Gender = document.getElementsByName("optradioE");
 var view = false;
 
 p.getAll().then((data) => {
+    let user = data.find(user => user.FireId === pat_id);
 
-    let user = data.find(user => user.Id.Value === '11111111111111');
 
-
-    pre.getAll_For_Patient('NE2DytHAGrGP2pUEcLMe').then((data) => {
+    pre.getAll_For_Patient(pat_id).then((data) => {
         console.log(data);
         DoctorCard(data);
 
