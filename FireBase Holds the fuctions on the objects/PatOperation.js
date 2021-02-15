@@ -13,8 +13,7 @@ export async function getAll() {
                 doc.data().address,
                 doc.data().blood_type,
                 doc.data().gender,
-                doc.data().password,
-                doc.data().email)
+                doc.data().password)
         }));
         patients = patients[0];
     });
@@ -32,8 +31,7 @@ export function Add(Obj) {
         address: Obj.Address,
         blood_type: Obj.blood_type['Value'],
         gender: Obj.Gender,
-        password: Obj.Password['Value'],
-        email: Obj.Email['Value']
+        password: Obj.Password['Value']
     });
 }
 
@@ -47,8 +45,7 @@ export function Update(Obj) {
         address: Obj.Address,
         blood_type: Obj.blood_type['Value'],
         gender: Obj.Gender,
-        password: Obj.Password['Value'],
-        email: Obj.Email['Value']
+        password: Obj.Password['Value']
     });
 }
 
@@ -64,8 +61,7 @@ export async function GetByID(id) {
             doc.data().address,
             doc.data().blood_type,
             doc.data().gender,
-            doc.data().password,
-            doc.data().email);
+            doc.data().password);
     });
     return obj;
 }

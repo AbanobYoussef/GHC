@@ -54,7 +54,7 @@ export default class Patient {
     set Name(val) {
         this.NAME = { Value: val, _Valid: Valid.ValidName(val) };
     }
-    set Phone(val) {
+    set Phone(val) { 
         this.phone = { Value: val, _Valid: Valid.ValidPhone(val) };
     }
     set Birth_Date(val) {
@@ -73,10 +73,6 @@ export default class Patient {
     set Password(val) {
         this.password = { Value: val, _Valid: Valid.ValidPassword(val) };
     }
-    set Email(val) {
-        this.email = { Value: val, _Valid: Valid.ValidEmail(val) };
-    }
-
     //======================================get's=========================================
     get FireId() {
         return this.fireID;
@@ -105,9 +101,6 @@ export default class Patient {
 
     get Password() {
         return this.password;
-    }
-    get Email() {
-        return this.email;
     }
 }
 
