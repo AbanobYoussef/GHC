@@ -1,5 +1,5 @@
-import * as p from '../../../FireBase Holds the fuctions on the objects/PatOperation.js'
-import * as d from '../../../FireBase Holds the fuctions on the objects/DocOperation.js'
+import * as p from '../../FireBase Holds the fuctions on the objects/PatOperation.js'
+import * as d from '../../FireBase Holds the fuctions on the objects/DocOperation.js'
 
  validateform.onclick= ()=> {
 		const encrypt = text => {
