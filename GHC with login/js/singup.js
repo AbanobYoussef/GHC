@@ -1,5 +1,5 @@
-import * as poreations from '../../FireBase Holds the fuctions on the objects/PatOperation.js'
-import patient from '../../Entities Holds the Classes/patient.js'
+import * as poreations from '../../../FireBase Holds the fuctions on the objects/PatOperation.js'
+import patient from '../../../Entities Holds the Classes/patient.js'
 
 
 
