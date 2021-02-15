@@ -14,6 +14,7 @@ const decrypt = data => {
    let pat_id=decrypt(ID);
    console.log(pat_id);
 
+var tbody4 = document.getElementById('tbody4');
 var appendinfo = document.querySelector(".appendinfo");
 var EditBtn = document.querySelector(".donere");
 var National_IDE = document.getElementById('National_IDE');
@@ -223,19 +224,34 @@ function FillPres(pres) {
         btn.setAttribute("data-target", "#myModal");
         btn.setAttribute("data-toggle", "modal");
         btn.onclick = function() {
+             d.GetByID(pre.DOC_ID).then(doc=>{
+             
             let Doctor_Name = document.querySelector("#DoctorName");
             let Dater = document.querySelector("#Date");
             let Department = document.querySelector("#Department");
             let Disease = document.querySelector("#Disease");
             let Medicines_List = document.querySelector("#Medicines_List");
             let Diagnose = document.querySelector("#Diagnose");
-            // Doctor_Name.value = pre.doctor.NAME.Value;
-            // console.log(Doctor_Name.value);
+            Doctor_Name.value =doc.NAME.Value;
             Dater.value = pre.data;
             Department.value = pre.Department;
             Disease.value = '';
-            Medicines_List.textContent = pre.Medicines_List;
+            tbody4.innerHTML ='';
+              for(let MED of pre.Medicines_List)
+                {
+                    console.log(MED.med );
+                    console.log(MED.doce);
+                    let tr=`<tr>
+                        <td>`+ MED.med +`</td>
+                        <td>`+ MED.doce  +`</td>
+                        <td>`+ MED.note  +`</td>
+                        </tr>`;
+                    tbody4.innerHTML +=tr;
+
+                }
             Diagnose.textContent = pre.Diagnoses;
+         });
+            
         }
         Button.appendChild(btn);
 

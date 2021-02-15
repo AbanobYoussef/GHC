@@ -1,5 +1,6 @@
 import * as p from '../../../FireBase Holds the fuctions on the objects/PatOperation.js'
 import * as d from '../../../FireBase Holds the fuctions on the objects/DocOperation.js'
+
  validateform.onclick= ()=> {
 		const encrypt = text => {
 	        	return CryptoJS.enc.Base64.stringify(CryptoJS.enc.Utf8.parse(text));
@@ -31,17 +32,18 @@ import * as d from '../../../FireBase Holds the fuctions on the objects/DocOpera
                 console.log(password);
 
             p.Get_By_Pat_ID_AND_PASSWORD(national,password).then(pat=>{
-                if(pat!='undefined'){
+                if(pat!=undefined){
+					console.log(pat);
                     window.location.replace("http://localhost:8080/Patient/01?id="+encrypt(pat));
                 }
             });
 
             d.Get_By_DOC_ID_AND_PASSWORD(national,password).then(doc=>{
-                if(doc!='undefined'){
+                if(doc!=undefined){
+					console.log(doc);
                     window.location.replace("http://localhost:8080/GHC%20Doctor%20side/?id="+encrypt(doc));
                 }
             });
-			//window.location.replace("http://localhost:8080/Patient/01");
 		}
 
 
